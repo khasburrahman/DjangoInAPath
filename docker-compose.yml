@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  djangoapp:
+    container_name: djangoapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    # python unbuffered fixed lagging output to the console
+    environment:
+      PYTHONUNBUFFERED: 0
+    working_dir: /usr/src/djangoapp
+    ports:
+      - "8000"
+    volumes:
+      - /djangoapp:/usr/src/djangoapp
+    networks:
+      - mynetwork
+    command: "python manage.py runserver 0.0.0.0:8000"
+networks:
+  mynetwork:
