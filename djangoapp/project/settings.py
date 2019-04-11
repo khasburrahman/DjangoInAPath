@@ -25,7 +25,8 @@ SECRET_KEY = '8y1c0%818d=+g=-m6alj(k(h)!*dy#pxb@4d_r$=0j74(&+j%('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Change this allowed host to other ip for other virtualbox docker-machine
+ALLOWED_HOSTS = ['192.168.99.100', 'localhost']
 
 
 # Application definition
