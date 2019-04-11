@@ -5,7 +5,7 @@ services:
     container_name: djangoapp
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: python.Dockerfile
     restart: always
     # python unbuffered fixed lagging output to the console
     environment:
@@ -17,6 +17,14 @@ services:
       - /djangoapp:/usr/src/djangoapp
     networks:
       - mynetwork
-    command: "python manage.py runserver 0.0.0.0:8000"
+    command: "gunicorn --bind 0:8000 project.wsgi:application"
+  nginx: 
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "8080:8080"
+    networks: 
+      - mynetwork
 networks:
   mynetwork:

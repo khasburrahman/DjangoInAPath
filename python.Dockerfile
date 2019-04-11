@@ -5,4 +5,4 @@ COPY /djangoapp/requirements.txt .
 RUN python3 -m pip install -r requirements.txt --no-cache-dir
 COPY /djangoapp /usr/src/djangoapp
 
-CMD [ "python manage.py runserver 0:8000" ]
+CMD [ "gunicorn --bind 0:8000 wisanadjango.wsgi:application" ]
